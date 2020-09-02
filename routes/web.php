@@ -17,5 +17,8 @@ use Illuminate\Support\Facades\Route;
     return view('default');
 });*/
 
-Route::get('/', 'Pagecontroller@index')->name('page.index');
-Route::get('about', 'Pagecontroller@about')->name('page.about');
+Route::get('/', 'ArticleController@index')->name('pages.index');
+Route::get('about', 'Pagecontroller@about')->name('pages.about');
+//Route::get('{slug}', 'ArticleController@show')->name('page.show');
+
+Route::resource('articles', 'ArticleController');

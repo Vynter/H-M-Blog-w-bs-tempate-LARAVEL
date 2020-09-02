@@ -1,4 +1,14 @@
 @extends('default')
+
+@section('title')
+About Me
+@endsection
+
+@section('sub_title')
+This is what I do.
+@endsection
+
+
 @section('content')
 
 <div class="container">
