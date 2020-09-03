@@ -1,8 +1,13 @@
-@import "https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic";
-@import "https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800";
-@import "/vendor/fontawesome-free/css/all.min.css";
-@import "bootstrap";
-@import "./clean-blog.min.css";
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+@import "./clean-blog.css";
 
 .navbar-nav .active {
     text-decoration: underline;

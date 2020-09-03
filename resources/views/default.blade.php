@@ -14,10 +14,10 @@
   <!--<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
 
   <!-- Custom fonts for this template -->
-  <!--<link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
--->
+
   <!-- Custom styles for this template -->
   <!--<link href="css/clean-blog.min.css" rel="stylesheet">-->
   <!--<link rel="stylesheet" href="css/style.css">-->
@@ -41,7 +41,7 @@
           <a class="nav-link {{Route::currentRouteName('index')=='articles.index'? ' active':''}}" href="{{route('articles.index')}}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{Route::currentRouteName('about')=='pages.about'?'active': ''}}" href="{{route('pages.about')}}">About</a>
+            <a class="nav-link {{Route::currentRouteName()=='pages.about'?'active': ''}}" href="{{route('pages.about')}}">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link {{Route::currentRouteName('sample')=='page.sample'?'active': ''}}" href="#">Sample Post</a>
@@ -49,6 +49,28 @@
           <li class="nav-item">
           <a class="nav-link {{Route::currentRouteName('contact')=='page.contact'?'active': ''}}" href="#">Contact</a>
           </li>
+          @auth
+          <li class="nav-item">
+              <a class="nav-link {{Route::currentRouteName('')=='articles.create'?'active': ''}}" href="{{route('articles.create')}}">New Article</a>
+          </li>
+          @endauth
+          <li class="nav-item">
+
+
+              @auth
+                <a type="submit" class="nav-link" href="{{route('logout')}}">Logout</a>
+              @else
+                <a type="submit" class="nav-link" href="{{route('login')}}">Login</a>
+              @endif
+
+
+          {{-- <form action="{{route('logout')}}" method="POST">
+            @csrf
+            <button type="submit">Logout</button>
+            </form> --}}
+        </li>
+
+
         </ul>
       </div>
     </div>
@@ -109,11 +131,11 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Custom scripts for this template -->
-  <script src="js/clean-blog.min.js"></script>
+  <script src="/js/clean-blog.min.js"></script>
 
 </body>
 
