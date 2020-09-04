@@ -12,7 +12,9 @@
 {{$article->sub_title}}
 @endsection
 
-
+@section('image')
+/storage/{{$article->image}}
+@endsection
 @section('content')
 
 <article>

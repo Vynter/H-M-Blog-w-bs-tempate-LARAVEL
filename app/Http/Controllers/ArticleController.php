@@ -54,7 +54,7 @@ class ArticleController extends Controller
             'sub_title' => 'required',
             'published_at' => 'required',
             'body' => 'required',
-            'image' => 'image'
+            'image' => 'image|max:100000'
 
         ]);
         //2eme solution pour rajotué le slug

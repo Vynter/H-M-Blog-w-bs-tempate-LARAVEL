@@ -3,8 +3,10 @@
 namespace App;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class Article extends Model
 {
@@ -44,10 +46,21 @@ class Article extends Model
 
     public function setImageAttribute()
     {
-        //     //dd(request('image')->getClientOriginalName());
+
+        // $img = Image::make(request('image')->getRealPath())->fit(1440, 470);
+
+        // $image_name = 'images/' . time() . '-' . request('image')->getClientOriginalName();
+
+        // Storage::put($image_name, (string) $img->encode());
+        // $this->attributes['image'] = $image_name;
+
+
+        /*
+        |---------------------------------------------------------------------------------------------------
+        */
         $this->attributes['image'] = request()->image->storeAs('images', time() . '-' . request('image')->getClientOriginalName());
     }
-    //mutatos
+    //mutators
 
     public function setSlugAttribute()
     {

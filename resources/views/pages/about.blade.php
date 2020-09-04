@@ -4,6 +4,10 @@
 About Me
 @endsection
 
+@section('image')
+img/about-bg.jpg
+@endsection
+
 @section('sub_title')
 This is what I do.
 @endsection
