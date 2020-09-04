@@ -23,6 +23,7 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name(
 
 Route::get('/', 'ArticleController@index')->name('pages.index');
 Route::get('about', 'Pagecontroller@about')->name('pages.about');
+Route::post('newsletter', 'NewsletterController@store')->name('newsletter.store');
 //Route::get('{slug}', 'ArticleController@show')->name('page.show');
 
 Route::resource('articles', 'ArticleController');

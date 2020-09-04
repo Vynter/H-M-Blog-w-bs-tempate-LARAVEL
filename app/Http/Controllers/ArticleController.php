@@ -22,6 +22,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
+
         $q = request('q');
 
         $articles = Article::Recherche($q)->latest()->with('user')->paginate(20);

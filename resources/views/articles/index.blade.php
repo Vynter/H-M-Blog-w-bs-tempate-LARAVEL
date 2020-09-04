@@ -49,10 +49,11 @@
             </div>
         </div>
         </div>
+        <div class="text-center col-lg-8 col-md-10 mx-auto">{{$articles->appends(request()->all())->links()}}</div><!--$articles->appends(['q'=> request('q')])->links()-->
+
     </div>
 
     <hr>
-    <div class="text-center">{{$articles->appends(request()->all())->links()}}</div><!--$articles->appends(['q'=> request('q')])->links()-->
 
 
 @endsection
