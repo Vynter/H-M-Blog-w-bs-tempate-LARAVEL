@@ -18,7 +18,7 @@
       </div>
 
       @endif
-        <form method="POST" action="{{route('articles.store')}}" name="sentMessage" id="contactForm" >
+        <form method="POST" action="{{route('articles.store')}}" name="sentMessage" id="contactForm" enctype="multipart/form-data">
         @csrf
             <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
@@ -42,6 +42,13 @@
                 <div class="form-group floating-label-form-group controls">
                 <label>Contenu</label>
                 <textarea rows="5" class="form-control" name="body" placeholder="Message"  >{{old('body')}}</textarea>
+
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                <label>Image</label>
+                <input class="form-control-file" type="file" name="image" >
 
                 </div>
             </div>

@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class Article extends Model
 {
     protected $fillable = [ // les champs qui vont etre sauvegarder dans la db
-        'title', 'sub_title', 'published_at',  'body', 'slug', 'user_id'
+        'title', 'sub_title', 'published_at',  'body', 'slug', 'user_id', 'image'
     ];
 
     protected $guard = [ // les champs qui ne vont pas etre sauvegarder dans la db
@@ -41,10 +41,17 @@ class Article extends Model
     {
         return str_replace(request('q'), '<mark class="bg-danger"' . request('q') . '</mark>', $this->sub_title);
     }
+
+    public function setImageAttribute()
+    {
+        //     //dd(request('image')->getClientOriginalName());
+        $this->attributes['image'] = request()->image->storeAs('images', time() . '-' . request('image')->getClientOriginalName());
+    }
     //mutatos
 
     public function setSlugAttribute()
     {
+
         $this->attributes['slug'] = Str::slug($this->title);
     }
     /*

@@ -48,11 +48,13 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'title' => 'required|min:3',
             'sub_title' => 'required',
             'published_at' => 'required',
             'body' => 'required',
+            'image' => 'image'
 
         ]);
         //2eme solution pour rajotué le slug
