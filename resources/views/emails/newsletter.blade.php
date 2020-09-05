@@ -1,7 +1,7 @@
 @component('mail::message')
 # Bonjour
 
-B koul rojoula warilna zabek.
+B koul rojoula nadilak ras9ak.
 ## Liste des articles ##
 <ul style="list-style: none">
     @foreach($articles as $article)

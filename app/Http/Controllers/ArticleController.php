@@ -12,7 +12,7 @@ class ArticleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->only('create', 'store');
+        $this->middleware('auth')->only('create', 'store', 'edit', 'update', 'destroy');
     }
 
     /**
@@ -92,6 +92,8 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
+        $article = Article::find($id);
+        return view('articles.edit', compact('article'));
     }
 
     /**
@@ -103,6 +105,20 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required|min:3',
+            'sub_title' => 'required',
+            'published_at' => 'required',
+            'body' => 'required',
+            'image' => 'image|max:100000'
+
+        ]);
+
+        $article = Article::find($id);
+
+        $article->update($request->all());
+
+        return redirect()->route('articles.index');
     }
 
     /**

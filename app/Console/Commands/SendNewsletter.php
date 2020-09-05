@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Article;
+use App\Jobs\sendMails;
 use App\Newsletter;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
@@ -43,14 +44,22 @@ class SendNewsletter extends Command
     public function handle()
     {
         //récupération des mail
-        $users = Newsletter::pluck('mail');
-        //récupération des articles qui ont été crée cette semaine
+        //solution avec juste la commande pour un seule mail
+        // $users = Newsletter::pluck('mail');
+
+        // //récupération des articles qui ont été crée cette semaine
         $articles = Article::whereDate('published_at', '<=', now()->startOfWeek())->take(10)->get();
+        // foreach ($users as $email) {
 
-        foreach ($users as $email) {
+        //     Mail::to($email)->send(new MailNewsletter($email, $articles)); // c la classe qu ise trouve dans app/mail on a du la rename pour confli
+        // };
 
-            Mail::to($email)->send(new MailNewsletter($email, $articles)); // c la classe qu ise trouve dans app/mail on a du la rename pour confli
-        };
+        /*solution avec jobs */
+
+        $users = Newsletter::chunk(5, function ($data) {
+            dispatch(new sendMails($data));
+        });
+
 
         $this->info('job finished');
         return 0;

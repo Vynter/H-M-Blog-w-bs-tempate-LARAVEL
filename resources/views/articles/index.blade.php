@@ -18,6 +18,7 @@
                     {{/*$loop->iteration*/$article->id}} -
                     {!!$article->title_searched!!}
                     </h2>
+                    <a href="{{route('articles.edit',$article->id)}}">Click ici</a>
                     <h3 class="post-subtitle">
                         {!!$article->sub_title_searched!!}
                     </h3>
