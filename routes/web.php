@@ -22,6 +22,7 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name(
 //Route::get('login', '/App\Http\Controllers\Auth\LoginController@login')->name('login'); // same as above except it's for the login
 
 Route::get('/', 'ArticleController@index')->name('pages.index');
+// Route::get('about', 'Pagecontroller@about')->name('pages.about')->middleware('CheckRole');
 Route::get('about', 'Pagecontroller@about')->name('pages.about');
 Route::post('newsletter', 'NewsletterController@store')->name('newsletter.store');
 //Route::get('{slug}', 'ArticleController@show')->name('page.show');

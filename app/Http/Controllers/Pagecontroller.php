@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class Pagecontroller extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('CheckRole');
+    }
     /*    public function index()
     {
         $q = request('q');
@@ -16,6 +20,7 @@ class Pagecontroller extends Controller
         return view('pages/index', compact('articles'));
     }
 */
+
     public function about()
     {
         return view('pages.about');
