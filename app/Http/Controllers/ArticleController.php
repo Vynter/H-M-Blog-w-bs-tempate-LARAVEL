@@ -25,7 +25,7 @@ class ArticleController extends Controller
 
         $q = request('q');
 
-        $articles = Article::Recherche($q)->latest()->with('user')->paginate(20);
+        $articles = Article::Recherche($q)->latest('id')->with('user')->paginate(20);
         //$articles->load('user');
         return view('articles.index', compact('articles'));
     }
@@ -116,7 +116,10 @@ class ArticleController extends Controller
 
         $article = Article::find($id);
 
-        $article->update($request->all());
+        $article->update($request->all() + [
+            'slug' => Str::slug(request('title')),
+
+        ]);
 
         return redirect()->route('articles.index');
     }
