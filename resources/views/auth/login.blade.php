@@ -65,6 +65,8 @@
                             </div>
                         </div>
                     </form>
+                    <a href="{{route('login.social','github')}}">Login with Github</a>
+                    <a href="{{route('login.social','facebook')}}">Login with Facebook</a>
                 </div>
             </div>
         </div>

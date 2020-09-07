@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Validation\Rules\Exists;
 
 class CheckRole
 {
@@ -15,7 +16,12 @@ class CheckRole
      */
     public function handle($request, Closure $next)
     {
-        if ($request->user()->role === 0) {
+        if ($request->user() === null) {
+            alert('Attention!', 'Vous n\'avez pas le droit de faire cette action', 'error');
+            // return abort(403);
+            return redirect('/');
+        }
+        if ($request->user()->role != 1) {
             alert('Attention!', 'Vous n\'avez pas le droit de faire cette action', 'error');
             // return abort(403);
             return redirect('/');
