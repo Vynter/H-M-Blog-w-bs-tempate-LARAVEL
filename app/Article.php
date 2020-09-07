@@ -5,6 +5,7 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -77,6 +78,14 @@ class Article extends Model
         return $query->where('title', 'like', "%$word%")
             ->orWhere('sub_title', 'like', "%$word%")
             ->orWhere('body', 'like', "%$word%");
+    }
+
+    public function scopeHome($q)
+    {
+        $word = request('q');
+        return Cache::tags(['articles', 'homepage'])->remember('article-home', 60 * 20, function () use ($q, $word) {
+            return $q->recherche($word)->latest('id')->with('user')->paginate(20);
+        });
     }
     /*
     |----------------------------------------------------------------------------------------------------

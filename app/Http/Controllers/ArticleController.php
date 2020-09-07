@@ -7,6 +7,7 @@ use App\Article;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class ArticleController extends Controller
 {
@@ -24,9 +25,19 @@ class ArticleController extends Controller
     {
 
         $q = request('q');
+        $page = request('page', 1);
 
-        $articles = Article::Recherche($q)->latest('id')->with('user')->paginate(20);
+        // $articles =  Cache::tags(['articles', 'homepage'])->remember("homepage-$q-$page", 60 * 20, function () use ($q) { //tags c juste un nom pour use dans le cache ca ne marche pas avec file en cache il faut passer sous redis
+        $articles =  Cache::remember("homepage-$q-$page", 60 * 20, function () use ($q) { //tags c juste un nom pour use dans le cache
+            return Article::Recherche($q)->latest('id')->with('user')->paginate(20);
+        });
+
+        // solution classique
+        //$articles = Article::Recherche($q)->latest('id')->with('user')->paginate(20);
         //$articles->load('user');
+
+        // using cache in the score
+        //$articles = Article::home();
         return view('articles.index', compact('articles'));
     }
 
@@ -69,6 +80,7 @@ class ArticleController extends Controller
             'user_id' => auth()->id()
         ]);
         */
+        //Cache::flush(); raw technique
         return redirect()->route('articles.show', $article);
     }
 

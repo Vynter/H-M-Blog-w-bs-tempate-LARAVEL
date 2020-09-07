@@ -61,7 +61,7 @@ class LoginController extends Controller
         // $user = Socialite::driver('github')->user();
         $user = Socialite::driver($social)->user();
 
-        //dd($user);
+        // dd($user);
         // $user->token;
         $u = User::where('email', $user->email)->first();
 
