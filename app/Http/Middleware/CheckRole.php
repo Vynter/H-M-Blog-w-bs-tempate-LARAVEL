@@ -17,7 +17,7 @@ class CheckRole
     public function handle($request, Closure $next)
     {
         if ($request->user() === null) {
-            alert('Attention!', 'Vous n\'avez pas le droit de faire cette action', 'error');
+            alert('Attention!', 'Vous n\'avez pas les droits requises de faire cette action', 'error');
             // return abort(403);
             return redirect('/');
         }
