@@ -22,7 +22,7 @@ class CheckRole
             return redirect('/');
         }
         if ($request->user()->role != 1) {
-            alert('Attention!', 'Vous n\'avez pas le droit de faire cette action', 'error');
+            alert('Attention!', 'Vous n\'avez pas les droits requises de faire cette action', 'error');
             // return abort(403);
             return redirect('/');
         }
