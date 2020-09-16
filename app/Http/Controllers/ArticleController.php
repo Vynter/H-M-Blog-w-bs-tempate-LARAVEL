@@ -132,7 +132,7 @@ class ArticleController extends Controller
             'slug' => Str::slug(request('title')),
 
         ]);
-
+        alert('updated', 'Votre article a bien été  enregistrer', 'success');
         return redirect()->route('articles.index');
     }
 
